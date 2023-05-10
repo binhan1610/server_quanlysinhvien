@@ -81,13 +81,11 @@ public class SinhviensController {
             users.setSdt(sdt);
             users.setDiachi(diachi);
             users.setGioitinh(gioitinh);
-            usersService.save(users);
+
             String msv = masv.toUpperCase();
             Optional<Sinhviens> svs = sinhviensService.findSvMsv(msv);
-            if (msv.equals(sv.getMasv()))
-                return "ok";
-            if (svs.isPresent())
-                return "trùng mã sv";
+
+            usersService.save(users);
             sv.setMasv(msv);
             sv.setKhoa(khoa);
             sv.setLopcq(lopcq);

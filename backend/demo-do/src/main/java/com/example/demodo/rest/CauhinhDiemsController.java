@@ -43,12 +43,17 @@ public class CauhinhDiemsController {
         Optional<CauhinhDiems> cauhinhDiems2 = cauhinhdiemsService.find(id);
         if (!cauhinhDiems2.isPresent())
             return "mon hoc nay chua duoc cau hinh diem";
+
+        LocalDate currentDate = LocalDate.now(); // Lấy ngày hiện tại
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy"); // Định dạng chuỗi "dd/MM/yyyy"
+        String dateString = currentDate.format(formatter);
         CauhinhDiems cauhinhDiems3 = cauhinhDiems2.get();
         cauhinhDiems3.setDiembt(cauhinhDiems.getDiembt());
         cauhinhDiems3.setDiemcc(cauhinhDiems.getDiemcc());
         cauhinhDiems3.setDiemck(cauhinhDiems.getDiemck());
         cauhinhDiems3.setDiemkt(cauhinhDiems.getDiemkt());
         cauhinhDiems3.setDiemth(cauhinhDiems.getDiemth());
+        cauhinhDiems3.setNgaybatdau(dateString);
 
         cauhinhdiemsService.save(cauhinhDiems3);
 
